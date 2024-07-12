@@ -19,6 +19,21 @@ function addDay(week, data, color, max, min) {
     let b = color.b;
     div.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${value})`;
   }
+
+  div.addEventListener("mouseover", () => {
+    if (data && data.html) {
+      hover.style.display = "block";
+      hover.style.left = 50 + div.offsetLeft + "px";
+      hover.style.top = 10 + div.offsetTop + "px";
+      hover.innerHTML = data.html;
+    } else {
+      hover.style.display = "none";
+    }
+  });
+
+  div.addEventListener("mouseout", () => {
+    hover.style.display = "none";
+  });
 }
 
 function addWeek(data, e, startIdx, color, max, min) {
