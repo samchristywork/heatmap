@@ -33,3 +33,30 @@ function addWeek(data, e, startIdx, color, max, min) {
     addDay(week, d, color, max, min);
   }
 }
+
+function showHeatmap(data, color) {
+  let e = document.createElement("div");
+  heatmap.appendChild(e);
+  max = Math.max(...data.map((d) => d.value));
+  min = Math.min(...data.map((d) => d.value));
+
+  for (let i = 0; i < data.length; i += 7) {
+    addWeek(data, e, i, color, max, min);
+  }
+}
+
+let startDate = new Date("2024-05-01");
+let data = [];
+for (i = 0; i < 365; i++) {
+  let date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
+  let value = Math.sin(i / 30) + Math.random() * 0.5;
+  let html = `<div>${date.toDateString()}</div><div>${value.toFixed(2)}</div>`;
+
+  data.push({
+    date: date,
+    value: value,
+    html: html,
+  });
+}
+
+showHeatmap(data, { 'r': 255, 'g': 100, 'b': 100 });
