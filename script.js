@@ -20,3 +20,16 @@ function addDay(week, data, color, max, min) {
     div.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${value})`;
   }
 }
+
+function addWeek(data, e, startIdx, color, max, min) {
+  let week = document.createElement("div");
+  week.style.display = "inline-block";
+  e.appendChild(week);
+
+  for (let j = 0; j < 7; j++) {
+    let idx = startIdx + j;
+    let d = data[idx];
+
+    addDay(week, d, color, max, min);
+  }
+}
