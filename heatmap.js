@@ -56,13 +56,15 @@ function addWeek(data, e, startIdx, color, max, min) {
   }
 }
 
-function showHeatmap(data, color) {
+function generateHeatmap(data, color) {
   let e = document.createElement("div");
-  heatmap.appendChild(e);
+
   max = Math.max(...data.map((d) => d.value));
   min = Math.min(...data.map((d) => d.value));
 
   for (let i = 0; i < data.length; i += 7) {
     addWeek(data, e, i, color, max, min);
   }
+
+  return e;
 }
