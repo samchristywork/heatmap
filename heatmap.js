@@ -11,6 +11,9 @@ function addDay(week, data, color, max, min) {
 
   if (data) {
     let value = (data.value - min) / (max - min);
+    let a = 0.02;
+    value *= 1 - a;
+    value += a;
     let r = color.r;
     let g = color.g;
     let b = color.b;
