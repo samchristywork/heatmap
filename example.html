@@ -31,7 +31,7 @@
       for(i = 0; i < 364; i++) {
         let date = new Date(start + i * day);
         data.push(formatData(
-          date,
+          new Date(+date + 24 * 60 * 60 * 1000),
           records[date.toISOString().split('T')[0]] || 0,
         ));
       }
