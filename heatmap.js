@@ -1,6 +1,3 @@
-let heatmap = document.getElementById("heatmap");
-let hover = document.getElementById("hover");
-
 function addDay(week, data, color, max, min) {
   let div = document.createElement("div");
   week.appendChild(div);
@@ -59,19 +56,3 @@ function showHeatmap(data, color) {
     addWeek(data, e, i, color, max, min);
   }
 }
-
-let startDate = new Date("2024-05-01");
-let data = [];
-for (i = 0; i < 365; i++) {
-  let date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
-  let value = Math.sin(i / 30) + Math.random() * 0.5;
-  let html = `<div>${date.toDateString()}</div><div>${value.toFixed(2)}</div>`;
-
-  data.push({
-    date: date,
-    value: value,
-    html: html,
-  });
-}
-
-showHeatmap(data, { 'r': 255, 'g': 100, 'b': 100 });

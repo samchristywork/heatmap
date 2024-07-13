@@ -6,10 +6,27 @@
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="style.css" />
+  <script src="heatmap.js"></script>
 </head>
 <body>
   <div id="heatmap"></div>
   <div id="hover"></div>
 </body>
-<script src="heatmap.js"></script>
+<script>
+let startDate = new Date("2024-05-01");
+let data = [];
+for (i = 0; i < 365; i++) {
+  let date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
+  let value = Math.sin(i / 30) + Math.random() * 0.5;
+  let html = `<div>${date.toDateString()}</div><div>${value.toFixed(2)}</div>`;
+
+  data.push({
+    date: date,
+    value: value,
+    html: html,
+  });
+}
+
+showHeatmap(data, { 'r': 255, 'g': 100, 'b': 100 });
+</script>
 </html>
