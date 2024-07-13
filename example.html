@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="style.css" />
     <script src="heatmap.js"></script>
+    <script src="records.js"></script>
   </head>
   <body>
     <div id="heatmap"></div>
@@ -25,14 +26,30 @@
       }
     }
 
-    let startDate = new Date("2024-05-01");
+    function showHeatmap(records, r, g, b) {
+      let data = [];
+      for(i = 0; i < 364; i++) {
+        let date = new Date(start + i * day);
+        data.push(formatData(
+          date,
+          records[date.toISOString().split('T')[0]] || 0,
+        ));
+      }
+
+      heatmap.appendChild(generateHeatmap(data, { r: r, g: g, b: b }));
+    }
+
+    let startDate = new Date("2024-07-13");
+    let start = startDate.getTime();
+    let day = 24 * 60 * 60 * 1000;
 
     {
       let data = [];
-      for (i = 0; i < 365; i++) {
-        let value = Math.sin(i / 30) + Math.random() * 0.5;
-        let date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
-        data.push(formatData(date, value));
+      for (i = 0; i < 364; i++) {
+        data.push(formatData(
+          new Date(start + i * day),
+          Math.sin(i / 30) + Math.random() * 0.5,
+        ));
       }
 
       heatmap.appendChild(generateHeatmap(data, { r: 255, g: 100, b: 100 }));
@@ -40,10 +57,11 @@
 
     {
       let data = [];
-      for (i = 0; i < 365; i++) {
-        let value = Math.random() * 0.5;
-        let date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
-        data.push(formatData(date, value));
+      for (i = 0; i < 364; i++) {
+        data.push(formatData(
+          new Date(start + i * day),
+          Math.random() * 0.5,
+        ));
       }
 
       heatmap.appendChild(generateHeatmap(data, { r: 100, g: 255, b: 100 }));
@@ -51,10 +69,11 @@
 
     {
       let data = [];
-      for (i = 0; i < 365; i++) {
-        let value = i;
-        let date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
-        data.push(formatData(date, value));
+      for (i = 0; i < 364; i++) {
+        data.push(formatData(
+          new Date(start + i * day),
+          i,
+        ));
       }
 
       heatmap.appendChild(generateHeatmap(data, { r: 100, g: 100, b: 255 }));
