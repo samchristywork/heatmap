@@ -17,6 +17,16 @@ function addDay(week, data, color, max, min) {
     div.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${value})`;
   }
 
+  let hover = document.createElement("div");
+  hover.style.backgroundColor = "#f1f1f1";
+  hover.style.border = "1px solid #d3d3d3";
+  hover.style.borderRadius = "5px";
+  hover.style.padding = "10px";
+  hover.style.display = "none";
+  hover.style.position = "absolute";
+  hover.style.zIndex = "1";
+  document.body.appendChild(hover);
+
   div.addEventListener("mouseover", () => {
     if (data && data.html) {
       hover.style.display = "block";

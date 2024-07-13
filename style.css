@@ -1,9 +1,3 @@
-#hover {
-  background-color: #f1f1f1;
-  border: 1px solid #d3d3d3;
-  border-radius: 5px;
-  padding: 10px;
-  display: none;
-  position: absolute;
-  z-index: 1;
+body {
+  background-color: #111111;
 }
