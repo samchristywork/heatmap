@@ -26,7 +26,7 @@
       }
     }
 
-    function showHeatmap(records, r, g, b) {
+    function showHeatmap(name, records, r, g, b) {
       let data = [];
       for(i = 0; i < 364; i++) {
         let date = new Date(start + i * day);
@@ -36,7 +36,11 @@
         ));
       }
 
-      heatmap.appendChild(generateHeatmap(data, { r: r, g: g, b: b }));
+      heatmap.appendChild(generateHeatmap(name, data, {
+        r: r,
+        g: g,
+        b: b
+      }));
     }
 
     let startDate = new Date("2024-07-13");
@@ -52,7 +56,11 @@
         ));
       }
 
-      heatmap.appendChild(generateHeatmap(data, { r: 255, g: 100, b: 100 }));
+      heatmap.appendChild(generateHeatmap("Wave", data, {
+        r: 255,
+        g: 100,
+        b: 100
+      }));
     }
 
     {
@@ -64,7 +72,11 @@
         ));
       }
 
-      heatmap.appendChild(generateHeatmap(data, { r: 100, g: 255, b: 100 }));
+      heatmap.appendChild(generateHeatmap("Random", data, {
+        r: 100,
+        g: 255,
+        b: 100
+      }));
     }
 
     {
@@ -76,16 +88,20 @@
         ));
       }
 
-      heatmap.appendChild(generateHeatmap(data, { r: 100, g: 100, b: 255 }));
+      heatmap.appendChild(generateHeatmap("Gradient", data, {
+        r: 100,
+        g: 100,
+        b: 255
+      }));
     }
 
     let hr = document.createElement("hr");
     hr.style.color = "white";
     heatmap.appendChild(hr);
 
-    showHeatmap(records.exercise, 255, 100, 100);
-    showHeatmap(records.commits, 100, 100, 255);
-    showHeatmap(records.sleep, 255, 100, 255);
-    showHeatmap(records.work_commits, 255, 255, 100);
+    showHeatmap("Exercise", records.exercise, 255, 100, 100);
+    showHeatmap("Commits", records.commits, 100, 100, 255);
+    showHeatmap("Sleep", records.sleep, 255, 100, 255);
+    showHeatmap("Work Commits", records.work_commits, 255, 255, 100);
   </script>
 </html>

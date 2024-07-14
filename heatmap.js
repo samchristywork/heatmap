@@ -59,15 +59,25 @@ function addWeek(data, e, startIdx, color, max, min) {
   }
 }
 
-function generateHeatmap(data, color) {
+function generateHeatmap(name, data, color) {
   let e = document.createElement("div");
+  e.style.display = "flex";
 
   max = Math.max(...data.map((d) => d.value));
   min = Math.min(...data.map((d) => d.value));
 
+  let container = document.createElement("div");
   for (let i = 0; i < data.length; i += 7) {
-    addWeek(data, e, i, color, max, min);
+    addWeek(data, container, i, color, max, min);
   }
+  e.appendChild(container);
+
+  let label = document.createElement("h3");
+  label.innerHTML = name;
+  label.style.color = "#777";
+  label.style.marginLeft = "20px";
+  label.style.marginTop = "25px";
+  e.appendChild(label);
 
   return e;
 }
